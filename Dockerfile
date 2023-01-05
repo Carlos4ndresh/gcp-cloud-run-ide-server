@@ -32,3 +32,4 @@ WORKDIR /home/vscode
 
 ENTRYPOINT [ "code" ,"tunnel", "--accept-server-license-terms", "--cli-data-dir" ,"/home/vscode/" ]
 CMD [ "--random-name" ]
+
