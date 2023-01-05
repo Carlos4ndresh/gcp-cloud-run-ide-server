@@ -4,3 +4,6 @@ resource "google_artifact_registry_repository" "vscodeserver-images-repo" {
   format        = "DOCKER"
   description   = "A docker repository for all the vscodeserver images"
 }
+
+
+# https://stackoverflow.com/questions/62804653/does-it-make-sense-to-run-a-non-web-application-on-cloud-run

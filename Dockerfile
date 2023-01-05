@@ -25,5 +25,10 @@ RUN . /etc/profile
 
 WORKDIR /home/vscode
 
+# https://stackoverflow.com/questions/62804653/does-it-make-sense-to-run-a-non-web-application-on-cloud-run
+# https://github.com/gitpod-io/openvscode-server
+
+# https://dev.to/codingalex/run-vs-code-remote-tunnels-in-a-container-4lf4
+
 ENTRYPOINT [ "code" ,"tunnel", "--accept-server-license-terms", "--cli-data-dir" ,"/home/vscode/" ]
 CMD [ "--random-name" ]
