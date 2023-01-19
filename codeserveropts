@@ -1,0 +1,45 @@
+Usage: code-server [options] [path]
+    - Opening a directory: code-server ./path/to/your/project
+    - Opening a saved workspace: code-server ./path/to/your/project.code-workspace
+
+Options
+      --auth                             The type of authentication to use. [password, none]
+      --password                         The password for password authentication (can only be passed in via $PASSWORD or the config file).
+      --hashed-password                  The password hashed with argon2 for password authentication (can only be passed in via $HASHED_PASSWORD or the config file).
+                                         Takes precedence over 'password'.
+      --cert                             Path to certificate. A self signed certificate is generated if none is provided.
+      --cert-host                        Hostname to use when generating a self signed certificate.
+      --cert-key                         Path to certificate key when using non-generated cert.
+      --disable-telemetry                Disable telemetry.
+      --disable-update-check             Disable update check. Without this flag, code-server checks every 6 hours against the latest github release and
+                                         then notifies you once every week that a new release is available.
+      --disable-file-downloads           Disable file downloads from Code. This can also be set with CS_DISABLE_FILE_DOWNLOADS set to 'true' or '1'.
+      --disable-workspace-trust          Disable Workspace Trust feature. This switch only affects the current session.
+      --disable-getting-started-override Disable the coder/coder override in the Help: Getting Started page.
+   -h --help                             Show this output.
+      --open                             Open in browser on startup. Does not work remotely.
+      --bind-addr                        Address to bind to in host:port. You can also use $PORT to override the port.
+      --config                           Path to yaml config file. Every flag maps directly to a key in the config file.
+      --socket                           Path to a socket (bind-addr will be ignored).
+      --socket-mode                      File mode of the socket.
+   -v --version                          Display version information.
+      --user-data-dir                    Path to the user data directory.
+      --extensions-dir                   Path to the extensions directory.
+      --list-extensions                  List installed VS Code extensions.
+      --force                            Avoid prompts when installing VS Code extensions.
+      --install-extension                Install or update a VS Code extension by id or vsix. The identifier of an extension is `${publisher}.${name}`.
+                                         To install a specific version provide `@${version}`. For example: 'vscode.csharp@1.2.3'.
+      --enable-proposed-api              Enable proposed API features for extensions. Can receive one or more extension IDs to enable individually.
+      --uninstall-extension              Uninstall a VS Code extension by id.
+      --show-versions                    Show VS Code extension versions.
+      --github-auth                      GitHub authentication token (can only be passed in via $GITHUB_TOKEN or the config file).
+      --proxy-domain                     Domain used for proxying ports.
+   -e --ignore-last-opened               Ignore the last opened directory or workspace in favor of an empty window.
+   -n --new-window                       Force to open a new window.
+   -r --reuse-window                     Force to open a file or folder in an already opened window.
+ -vvv --verbose                          Enable verbose logging.
+  -an --app-name                         The name to use in branding. Will be shown in titlebar and welcome message
+   -w --welcome-text                     Text to show on login page
+      --link                             (deprecated) Securely bind code-server via our cloud service with the passed name. You'll get a URL like
+                                         https://hostname-username.coder.co at which you can easily access your code-server instance.
+                                         Authorization is done via GitHub.
