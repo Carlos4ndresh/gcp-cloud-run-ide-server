@@ -9,3 +9,8 @@ terraform {
     bucket = "shared-resources-tfstate"
   }
 }
+
+provider "aws" {
+  alias  = "route53"
+  region = "us-east-1"
+}
