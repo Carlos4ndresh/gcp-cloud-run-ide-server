@@ -1,11 +1,3 @@
-resource "google_artifact_registry_repository" "vscodeserver-images-repo" {
-  repository_id = "vscode-server-images"
-  location      = "us-west4"
-  format        = "DOCKER"
-  description   = "A docker repository for all the vscodeserver images"
-}
-
-
 resource "google_cloud_run_service" "ide_service" {
   name                       = "cloud-ide-server"
   location                   = "us-west1"
@@ -25,13 +17,20 @@ resource "google_cloud_run_service" "ide_service" {
     }
     spec {
       containers {
-        image = "us-west4-docker.pkg.dev/gcp-ide-cloud-chp001-5cbc/vscode-server-images/codeserver:latest"
+        image = "us-west4-docker.pkg.dev/gcp-ide-cloud-chp001-5cbc/vscode-server-images/codeserver:0.1"
         ports {
           container_port = 8080
         }
+        resources {
+          limits = {
+            "cpu"    = "2000m"
+            "memory" = "2Gi"
+          }
+        }
       }
-      timeout_seconds      = 120
-      service_account_name = ""
+      container_concurrency = 1
+      timeout_seconds       = 120
+      service_account_name  = "project-service-account@gcp-ide-cloud-chp001-5cbc.iam.gserviceaccount.com"
 
     }
   }
