@@ -1,5 +1,6 @@
 # Local .terraform directories
-**/.terraform/*
+**/.terraform
+.terraform.lock.hcl
 
 # .tfstate files
 *.tfstate
@@ -32,3 +33,4 @@ venv/
 container_vscode/Dockerfile
 container_vscode/main.py
 container_vscode/requirements.txt
+**/.terraform.lock.hcl
