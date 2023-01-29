@@ -5,7 +5,7 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    prefix = "dev/gcp-ide-cloud"
+    prefix = "dev/gcp-ide-cloud/cloud_run"
     bucket = "shared-resources-tfstate"
   }
 }
