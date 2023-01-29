@@ -1,5 +1,5 @@
 provider "google" {
-  project = "gcp-ide-cloud-chp001-5cbc"
+  project = var.project_id
   region  = "us-west1"
 }
 

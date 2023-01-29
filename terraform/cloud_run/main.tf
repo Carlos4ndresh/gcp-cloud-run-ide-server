@@ -17,7 +17,7 @@ resource "google_cloud_run_service" "ide_service" {
     }
     spec {
       containers {
-        image = "us-west4-docker.pkg.dev/gcp-ide-cloud-chp001-5cbc/vscode-server-images/codeserver:0.1"
+        image = "us-west4-docker.pkg.dev/${var.project_id}/vscode-server-images/codeserver:0.1"
         ports {
           container_port = 8080
         }
@@ -30,7 +30,7 @@ resource "google_cloud_run_service" "ide_service" {
       }
       container_concurrency = 1
       timeout_seconds       = 120
-      service_account_name  = "project-service-account@gcp-ide-cloud-chp001-5cbc.iam.gserviceaccount.com"
+      service_account_name  = "project-service-account@${var.project_id}.iam.gserviceaccount.com"
 
     }
   }
