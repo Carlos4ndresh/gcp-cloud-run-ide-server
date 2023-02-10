@@ -2,7 +2,6 @@ resource "google_cloud_run_service" "ide_service" {
   name                       = "cloud-ide-server"
   location                   = "us-west1"
   autogenerate_revision_name = true
-
   traffic {
     latest_revision = true
     percent         = 100
@@ -17,7 +16,7 @@ resource "google_cloud_run_service" "ide_service" {
     }
     spec {
       containers {
-        image = "us-west4-docker.pkg.dev/${var.project_id}/vscode-server-images/codeserver:0.1"
+        image = "us-west4-docker.pkg.dev/${var.project_id}/vscode-server-images/codeserver:latest"
         ports {
           container_port = 8080
         }
@@ -35,6 +34,23 @@ resource "google_cloud_run_service" "ide_service" {
     }
   }
 }
+
+data "google_iam_policy" "noauth" {
+  binding {
+    role    = "roles/run.invoker"
+    members = ["allUsers", ]
+  }
+}
+resource "google_cloud_run_service_iam_policy" "noauth" {
+  location = google_cloud_run_service.ide_service.location
+  project  = google_cloud_run_service.ide_service.project
+  service  = google_cloud_run_service.ide_service.name
+
+  policy_data = data.google_iam_policy.noauth.policy_data
+}
+
+
+
 
 # https://cloud.google.com/run/docs/authenticating/end-users#internal
 # https://cloud.google.com/run/docs/mapping-custom-domains
