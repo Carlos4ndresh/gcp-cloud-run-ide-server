@@ -32,14 +32,10 @@ resource "google_compute_url_map" "code_service_urlmap" {
   path_matcher {
     name            = "codersite"
     default_service = google_compute_backend_service.code_ide_backend.id
-    path_rule {
-      service = google_compute_backend_service.code_ide_backend.id
-      paths   = ["/beta", "/coder"]
-    }
   }
   default_url_redirect {
-    host_redirect = "www.carlosaherrera.com"
-    strip_query   = true
+    strip_query    = true
+    https_redirect = true
   }
 }
 
@@ -62,4 +58,25 @@ resource "google_compute_global_forwarding_rule" "default_forwarding_rule" {
   ip_address            = google_compute_global_address.lb_address.id
   port_range            = "443"
   load_balancing_scheme = "EXTERNAL_MANAGED"
+}
+
+resource "google_compute_url_map" "http_redirect" {
+  name = "http-redirect"
+  default_url_redirect {
+    redirect_response_code = "MOVED_PERMANENTLY_DEFAULT"
+    strip_query            = false
+    https_redirect         = true
+  }
+}
+
+resource "google_compute_target_http_proxy" "http_redirect" {
+  name    = "http-redirect"
+  url_map = google_compute_url_map.http_redirect.self_link
+}
+
+resource "google_compute_global_forwarding_rule" "http_redirect" {
+  name       = "http-redirect"
+  target     = google_compute_target_http_proxy.http_redirect.self_link
+  ip_address = google_compute_global_address.lb_address.id
+  port_range = "80"
 }

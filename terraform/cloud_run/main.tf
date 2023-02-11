@@ -10,8 +10,10 @@ resource "google_cloud_run_service" "ide_service" {
   template {
     metadata {
       annotations = {
-        "autoscaling.knative.dev/minScale" = "0"
-        "autoscaling.knative.dev/maxScale" = "10"
+        "autoscaling.knative.dev/minScale"         = "0"
+        "autoscaling.knative.dev/maxScale"         = "10"
+        "run.googleapis.com/sessionAffinity"       = true
+        "run.googleapis.com/execution-environment" = "gen2"
       }
     }
     spec {
@@ -23,12 +25,12 @@ resource "google_cloud_run_service" "ide_service" {
         resources {
           limits = {
             "cpu"    = "2000m"
-            "memory" = "2Gi"
+            "memory" = "4Gi"
           }
         }
       }
       container_concurrency = 1
-      timeout_seconds       = 120
+      timeout_seconds       = 300
       service_account_name  = "project-service-account@${var.project_id}.iam.gserviceaccount.com"
 
     }
