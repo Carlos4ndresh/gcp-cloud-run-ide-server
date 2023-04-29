@@ -57,7 +57,3 @@ resource "google_cloud_run_service_iam_policy" "noauth" {
 # https://cloud.google.com/run/docs/authenticating/end-users#internal
 # https://cloud.google.com/run/docs/mapping-custom-domains
 # https://cloud.google.com/iap/docs/enabling-cloud-run
-
-# resource "aws_route53_record" "cloud_ide_dns_record" {
-#   provider = aws.route53
-# }
