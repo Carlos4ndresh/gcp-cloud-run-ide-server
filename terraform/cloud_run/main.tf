@@ -1,6 +1,6 @@
 resource "google_cloud_run_service" "ide_service" {
   name                       = "cloud-ide-server"
-  location                   = "us-west1"
+  location                   = var.region
   autogenerate_revision_name = true
   traffic {
     latest_revision = true

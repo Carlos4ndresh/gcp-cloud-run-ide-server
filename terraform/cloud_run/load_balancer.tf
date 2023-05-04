@@ -7,7 +7,7 @@ resource "google_compute_global_address" "lb_address" {
 resource "google_compute_region_network_endpoint_group" "cloud_run_ide_neg" {
   name                  = "code-ide-lb-neg"
   network_endpoint_type = "SERVERLESS"
-  region                = "us-west1"
+  region                = var.region
   cloud_run {
     service = google_cloud_run_service.ide_service.name
   }

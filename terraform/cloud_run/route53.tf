@@ -1,7 +1,7 @@
 
 data "aws_route53_zone" "uselessnerd_zone_public" {
   provider     = aws.route53
-  name         = "uselessnerd.com"
+  name         = var.domain
   private_zone = false
 }
 
