@@ -18,7 +18,7 @@ resource "google_cloud_run_service" "ide_service" {
     }
     spec {
       containers {
-        image = "us-west4-docker.pkg.dev/${var.project_id}/code-server-images/codeserver:latest"
+        image = "${var.region}-docker.pkg.dev/${var.project_id}/code-server-images/codeserver:latest"
         ports {
           container_port = 8080
         }
